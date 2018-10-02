@@ -1,0 +1,3 @@
+[submodule "ADURL"]
+	path = ADURL
+	url = https://github.com/areaDetector/ADURL
