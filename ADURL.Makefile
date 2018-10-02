@@ -44,6 +44,10 @@ ifneq ($(strip $(ADCORE_DEP_VERSION)),)
 ADCore_VERSION=$(ADCORE_DEP_VERSION)
 endif
 
+ifneq ($(strip $(ADSUPPORT_DEP_VERSION)),)
+ADSupport_VERSION=$(ADSUPPORT_DEP_VERSION)
+endif
+
 ## Exclude linux-ppc64e6500
 EXCLUDE_ARCHS = linux-ppc64e6500
 
@@ -53,8 +57,11 @@ APPSRC:=$(APP)/src
 
 USR_INCLUDES += -I/usr/include/libxml2
 LIB_SYS_LIBS += xml2
+LIB_SYS_LIBS += jpeg
+#USR_INCLUDES += -I/usr/local/include/GraphicsMagick
 USR_INCLUDES += -I/usr/include/GraphicsMagick
 LIB_SYS_LIBS += GraphicsMagick
+LIB_SYS_LIBS += GraphicsMagick++
 
 # USR_CFLAGS   += -Wno-unused-variable
 # USR_CFLAGS   += -Wno-unused-function
@@ -101,12 +108,13 @@ DBDS += $(APPSRC)/URLDriverSupport.dbd
 # USR_LDFLAGS += -L /opt/etherlab/lib
 # USR_LDFLAGS += -lethercat
 # USR_LDFLAGS += -Wl,-rpath=/opt/etherlab/lib
+#USR_LDFLAGS += -lGraphicsMagick
+#USR_LDFLAGS += -L/usr/local/lib
 
 ## SYSTEM LIBS 
 ##
 # USR_LIBS += boost_regex
 # USR_LIBS += readline
-# USR_LIBS += xml2
 
 #
 

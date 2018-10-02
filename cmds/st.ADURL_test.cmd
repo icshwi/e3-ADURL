@@ -1,4 +1,5 @@
-require ADPointURL,2.2.0
+#require ADURL,2.2.0
+require ADURL,develop
 require busy,1.7.0
 require sequencer,2.1.21
 require sscan,1339922
@@ -14,7 +15,7 @@ epicsEnvSet("ADURL",		"/home/iocuser/e3/e3-ADURL/ADURL")
 #epicsEnvSet("EPICS_BASE",	"/home/utgard/epics_env/epics-base")
 #epicsEnvSet("EPICS_MODULES",	"/home/utgard/epics_env/epics-modules")
 #epicsEnvSet("ASYN",		"/home/utgard/epics_env/epics-modules/asyn")
-#epicsEnvSet("ADSUPPORT",	"/home/utgard/epics_env/epics-modules/areaDetector/ADSupport")
+  epicsEnvSet("ADSUPPORT",	"/home/iocuser/e3/e3-ADSupport/ADSupport")
   epicsEnvSet("ADCORE",		"/home/iocuser/e3/e3-ADCore/ADCore")
   epicsEnvSet("AUTOSAVE",	"/home/iocuser/e3/e3-autosave/autosave")
   epicsEnvSet("AUTOSAVE_DIR",	"$(TOP)/autosave")
@@ -46,7 +47,7 @@ epicsEnvSet("NELEMENTS", "12582912")
 # URLDriverConfig(const char *portName, int maxBuffers, size_t maxMemory,
 #                 int priority, int stackSize)
 URLDriverConfig("$(PORT)", 0, 0)
-dbLoadRecords("$(ADURL)/db/URLDriver.template","P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("URLDriver.db","P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
 asynSetTraceIOMask($(PORT), 0, 2)
 #asynSetTraceMask($(PORT), 0, 0xFF)
@@ -74,7 +75,7 @@ dbLoadRecords("NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,
 #save_restoreSet_DatedBackupFiles(1)
 # 
 system("mkdir -p --mode=0755 $(AUTOSAVE_DIR)/$(IOC)")
-set_savefile_path(   "$(AUTOSAVE_DIR)/$(IOC)","")
+set_savefile_path("$(AUTOSAVE_DIR)/$(IOC)","")
 #set_requestfile_path("$(ADPOINTGREY)/autosave","/req")
 # 
 # set_pass0_restoreFile("info_positions.sav")
@@ -89,7 +90,9 @@ iocInit()
 #cd ../..
 #create_monitor_set("info_positions.req", 5 , "")
 #create_monitor_set("info_settings.req", 15 , "")
-set_requestfile_path("$(ADURL)/iocs/urlIOC/iocBoot/iocURLDriver "")
+set_requestfile_path("$(ADURL)/iocs/urlIOC/iocBoot/iocURLDriver", "")
+set_requestfile_path("$(ADURL)/urlApp/Db", "")
+set_requestfile_path("$(ADCORE)/../cmds", "")
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
 
 
