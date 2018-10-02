@@ -13,3 +13,5 @@ core.*
 *_old/
 *PVs.list
 *.sw?
+cmds/autosave/*/
+
