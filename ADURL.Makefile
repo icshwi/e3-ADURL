@@ -59,7 +59,7 @@ USR_INCLUDES += -I/usr/include/libxml2
 LIB_SYS_LIBS += xml2
 LIB_SYS_LIBS += jpeg
 #USR_INCLUDES += -I/usr/local/include/GraphicsMagick
-USR_INCLUDES += -I/usr/include/GraphicsMagick
+USR_INCLUDES += -I/usr/include/ImageMagick++
 LIB_SYS_LIBS += GraphicsMagick
 LIB_SYS_LIBS += GraphicsMagick++
 

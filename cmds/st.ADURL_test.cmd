@@ -1,9 +1,9 @@
-#require ADURL,2.2.0
-require ADURL,develop
+require ADURL,2.2.0
+#require ADURL,develop
 require busy,1.7.0
 require sequencer,2.1.21
 require sscan,1339922
-require calc,3.7.0
+require calc,3.7.1
 require autosave,5.9.0
 
 epicsEnvSet("IOC",		"iocURLTest")
